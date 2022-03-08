@@ -4,6 +4,7 @@ const Discord = require("discord.js")
 const express = require('express');
 const dotenv = require("dotenv")
 
+const play = require('./commands/play')
 
 dotenv.config()
 const PORT = process.env.PORT
@@ -57,13 +58,16 @@ client.on("messageCreate", async (message) => {
         emb.react('🇱')
         
         console.log(emb)
+        return
     }
+
+    await play.run(client, message)
 })
 
 client.on('messageReactionAdd', async (reaction, user) => {
     switch (reaction.emoji.name) {
         case '▶️':
-            // plays a music
+            // resume a music
             break;
         case '⏸️':
             // pauses a music
