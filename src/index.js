@@ -5,6 +5,7 @@ const express = require('express');
 const dotenv = require("dotenv")
 
 const play = require('./commands/play')
+const pause = require('./commands/pause')
 
 dotenv.config()
 const PORT = process.env.PORT
@@ -70,7 +71,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             // resume a music
             break;
         case '⏸️':
-            // pauses a music
+            pause.run(client, reaction.message)
             break;
         case '⏩':
             // skips current music
