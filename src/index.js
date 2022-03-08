@@ -1,3 +1,4 @@
+const { MessageEmbed } = require("discord.js")
 const { Player } = require("discord-player")
 const Discord = require("discord.js")
 const express = require('express');
@@ -36,6 +37,27 @@ client.player = new Player(client, {
 
 client.on("ready", () => {
     console.log("YMusic's running!")
+})
+
+client.on("messageCreate", async (message) => {
+    if(message.channelId !== process.env.CHANNEL_ID) return
+    if(message.content == '.setup') {
+        let embed = new MessageEmbed()
+        embed
+        .setDescription(`**Bem-vindo à YMusic**`)
+        .setImage('https://static.techspot.com/images2/news/bigimage/2019/07/2019-07-19-image.png')
+
+        const emb = await message.channel.send({
+            embeds: [embed]
+        })
+        emb.react('▶️')
+        emb.react('⏸️')
+        emb.react('⏩')
+        emb.react('⏹️')
+        emb.react('🇱')
+        
+        console.log(emb)
+    }
 })
 
 client.login(TOKEN)
