@@ -6,6 +6,7 @@ const dotenv = require("dotenv")
 
 const play = require('./commands/play')
 const pause = require('./commands/pause')
+const resume = require('./commands/resume')
 
 dotenv.config()
 const PORT = process.env.PORT
@@ -68,7 +69,7 @@ client.on("messageCreate", async (message) => {
 client.on('messageReactionAdd', async (reaction, user) => {
     switch (reaction.emoji.name) {
         case '▶️':
-            // resume a music
+            resume.run(client, reaction.message)
             break;
         case '⏸️':
             pause.run(client, reaction.message)
