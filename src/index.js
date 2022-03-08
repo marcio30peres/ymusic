@@ -60,4 +60,26 @@ client.on("messageCreate", async (message) => {
     }
 })
 
+client.on('messageReactionAdd', async (reaction, user) => {
+    switch (reaction.emoji.name) {
+        case '▶️':
+            // plays a music
+            break;
+        case '⏸️':
+            // pauses a music
+            break;
+        case '⏩':
+            // skips current music
+            break;
+        case '⏹️':
+            // delete the queue
+            break;
+        case '🇱':
+            // show the queue
+            break;
+    }
+
+    await reaction.users.remove(user.id);
+});
+
 client.login(TOKEN)
