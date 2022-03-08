@@ -8,6 +8,7 @@ const play = require('./commands/play')
 const pause = require('./commands/pause')
 const resume = require('./commands/resume')
 const next = require('./commands/next')
+const clear = require('./commands/clear')
 
 dotenv.config()
 const PORT = process.env.PORT
@@ -79,7 +80,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             next.run(client, reaction.message)
             break;
         case '⏹️':
-            // delete the queue
+            clear.run(client, reaction.message)
             break;
         case '🇱':
             // show the queue
