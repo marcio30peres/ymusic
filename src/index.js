@@ -7,6 +7,7 @@ const dotenv = require("dotenv")
 const play = require('./commands/play')
 const pause = require('./commands/pause')
 const resume = require('./commands/resume')
+const next = require('./commands/next')
 
 dotenv.config()
 const PORT = process.env.PORT
@@ -75,7 +76,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             pause.run(client, reaction.message)
             break;
         case '⏩':
-            // skips current music
+            next.run(client, reaction.message)
             break;
         case '⏹️':
             // delete the queue
